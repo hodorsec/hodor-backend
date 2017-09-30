@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from project import app
+from hodor import app
 from flask import render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField
@@ -19,7 +19,7 @@ def start():
 def printer():
     form = CreateForm(request.form)
     if request.method == 'POST' and form.validate():
-        from project.models.Printer import Printer
+        from hodor.models.Printer import Printer
         printer = Printer()
         printer.show_string(form.text.data)
         return render_template('printer/index.html')
