@@ -1,2 +1,8 @@
 # Personal virtualenv
-.hodor
+.hodor/
+
+# For IDE
+.idea/
+
+# Stupid pyc files
+.pyc
