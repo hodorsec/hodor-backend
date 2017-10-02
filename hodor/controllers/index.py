@@ -14,3 +14,7 @@ class CreateForm(FlaskForm):
 def start():
     return render_template('index/index.html')
 
+
+@app.route('/app')
+def application():
+    return render_template('app/app.html')
