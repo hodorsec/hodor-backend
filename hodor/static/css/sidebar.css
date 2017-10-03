@@ -25,7 +25,6 @@ overflow:visible;
   margin-top: 3.2em;
   margin-top: 50px !important;
 background:#101010;
-border-right:1px solid #e5e5e5;
 position:absolute;
 top:0;
 bottom:0;
@@ -139,4 +138,3 @@ height: 100%;
 url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
 format('woff');
 }
-
