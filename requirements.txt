@@ -1,4 +1,6 @@
-Flask
-Flask-WTF
-Jinja2
-Flask-DebugToolbar
+Flask==0.12.2
+Flask-DebugToolbar==0.10.1
+Flask-SocketIO==2.9.1
+Flask-WTF==0.14.2
+Jinja2==2.9.6
+
