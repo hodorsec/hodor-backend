@@ -18,10 +18,10 @@ url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 .main-menu:hover,nav.main-menu.expanded {
   width:250px;
-  overflow:visible;
 }
 
 .main-menu {
+
   margin-top: 3.2em;
   margin-top: 50px !important;
   background:#101010;
@@ -31,8 +31,8 @@ url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
   left:0;
   width:60px;
   overflow:hidden;
-  -webkit-transition:width .05s linear;
-  transition:width .05s linear;
+  -webkit-transition:width .05s 0.3s linear;
+  transition:width .05s 0.3s linear;
   -webkit-transform:translateZ(0) scale(1,1);
   z-index:1000;
 }
