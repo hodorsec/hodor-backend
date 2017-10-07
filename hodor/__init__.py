@@ -2,13 +2,13 @@
 __version__ = '0.1'
 from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
-from hodor.controllers import *
 
 ENV = 'development'
 
 app = Flask('hodor')
-api = Api(app)
 app.config['SECRET_KEY'] = 'CHANGE_ME_IN_PRODUCTION'
+
+from hodor.controllers import *
 
 if ENV == 'development':
     app.debug = True
