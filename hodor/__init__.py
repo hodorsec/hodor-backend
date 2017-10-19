@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # app/__init__.py
 import time
-import copy
+from termcolor import colored
+import sys
 from flask_api import FlaskAPI
 from flask_sqlalchemy import SQLAlchemy
 # local import
@@ -24,9 +25,12 @@ db.init_app(application)
 # Delay the application launch to get the user attention if running in testing mode
 if config_name != 'production':
     for x in range(0, 5):
-        print("You are not running the server in production mode.\
-        App will run in {} seconds".format(5-x))
+        sys.stdout.write(colored("\rYou are not running the server in production mode. " +
+              "App will run in {} seconds..".format(5-x), 'red'))
+        sys.stdout.flush()
         time.sleep(1)
+
+    print(colored("\n\nRunning app in {} mode..".format(config_name), 'yellow'))
 
 # This disables the HTML API renderer for flask_api when called through browsers.
 if config_name == 'production':
