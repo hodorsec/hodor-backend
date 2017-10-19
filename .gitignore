@@ -57,7 +57,7 @@ coverage.xml
 local_settings.py
 
 # Flask stuff:
-instance/
+migrations/
 .webassets-cache
 
 # Scrapy stuff:
