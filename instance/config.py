@@ -13,10 +13,10 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/test_db'
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/hodor_test'
     SECRET = "ChangeThisStringIfYouWant"
-    TESTING = False
+    TESTING = True
 
 
 class TestingConfig(Config):
