@@ -5,7 +5,9 @@ from hodor.models.user import User
 from sqlalchemy.exc import IntegrityError
 
 
-# Get all Users
+#########################################
+# Get all the user from the database    #
+#########################################
 @app.route('/users', methods=['GET', 'POST'])
 def get_all_users():
     # TODO: Authentication for calling this API endpoint. Admin only.
@@ -69,19 +71,19 @@ def check_for_existing_user():
     # If the username field is passed, checl the username field.
     if request.data.get('username'):
         check_username = str(request.data.get('username').strip())
-        user_checkuser = User.query.filter_by(username=check_username).first()
-        if user_checkuser:
+        user_check_user = User.query.filter_by(username=check_username).first()
+        if user_check_user:
             errors.append({
                 'field': 'username',
                 'error': '{} is taken'.format(check_username)
             })
-        del(user_checkuser)
+        del user_check_user
 
     # If the email field is set, check for duplicate email
     if request.data.get('email'):
         check_email = str(request.data.get('email').strip())
-        user_checkmail = User.query.filter_by(email=check_email).first()
-        if user_checkmail:
+        user_check_email = User.query.filter_by(email=check_email).first()
+        if user_check_email:
             errors.append({
                 'field': 'email',
                 'error': '{} exists in the database'.format(check_email)
@@ -96,8 +98,11 @@ def check_for_existing_user():
         )
 
 
+################################################
+# Handle Integrity Exceptions in API           #
+################################################
 @app.errorhandler(IntegrityError)
-def handle_sqlalchemy_assertion_error(err):
+def handle_sql_assertion_error(err):
     try:
         '''
         err.orig.args is from the DBAPIError class of SQLAlchemy. It usually

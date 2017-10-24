@@ -21,8 +21,8 @@ db.init_app(application)
 application.config['SECRET_KEY'] = 'blehblehbleh'
 
 
-
-# Delay the application launch to get the user attention if running in testing mode
+# Delay the application launch to get the user attention if running in
+# testing mode
 '''
 if config_name != 'production':
     for x in range(0, 5):
@@ -33,7 +33,8 @@ if config_name != 'production':
 '''
 print(colored("\n\nRunning app in {} mode..".format(config_name), 'yellow'))
 
-# This disables the HTML API renderer for flask_api when called through browsers.
+# This disables the HTML API renderer for flask_api when called through
+# browsers.
 if config_name == 'production':
     application.config['DEFAULT_RENDERERS'] = [
         'flask.ext.api.renderers.JSONRenderer',

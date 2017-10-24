@@ -6,3 +6,4 @@ flask_api
 termcolor
 flask_sqlalchemy
 sqlalchemy_utils
+SQLAlchemy

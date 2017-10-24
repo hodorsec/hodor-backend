@@ -4,6 +4,7 @@ from hodor import db
 from sqlalchemy import inspect
 from sqlalchemy_utils import PasswordType
 
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -13,7 +14,7 @@ class User(db.Model):
     last_name = db.Column(db.String(32), nullable=False)
     email = db.Column(db.String(64), unique=True, nullable=False)
     country = db.Column(db.String(64))
-    '''PasswordType is an awesome function. To check for passwords later, 
+    '''PasswordType is an awesome function. To check for passwords later,
         you can just do user['password'] == 'plaintext' for a boolean response.'''
     password = db.Column(PasswordType(
         schemes=[
