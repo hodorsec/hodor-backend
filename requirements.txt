@@ -7,3 +7,6 @@ termcolor
 flask_sqlalchemy
 sqlalchemy_utils
 SQLAlchemy
+flask_script
+flask_migrate
+passlib

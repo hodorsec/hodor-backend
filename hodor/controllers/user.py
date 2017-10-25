@@ -4,6 +4,22 @@ from flask import request, jsonify, abort, make_response
 from hodor.models.user import User
 from sqlalchemy.exc import IntegrityError
 
+def _extract_required_fields(user):
+    filtered_user = dict()
+    '''
+    This can be done by directly dumping the dictionary but there's always
+    a risk of data leak.So, we pick what we need to give out out of the API
+    '''
+    filtered_user['username'] = user.username
+    filtered_user['first_name'] = user.first_name
+    filtered_user['last_name'] = user.last_name
+    filtered_user['email'] = user.email
+    filtered_user['verified_account'] = user.verified_account
+
+    return filtered_user
+
+
+
 
 #########################################
 # Get all the user from the database    #
@@ -20,19 +36,31 @@ def get_all_users():
     response['data'] = []
 
     for user in User.get_all():
-        current_user = dict()
-        '''
-        This can be done by directly dumping the dictionary but there's always
-        a risk of data leak.So, we pick what we need to give out out of the API
-        '''
-        current_user['username'] = user.username
-        current_user['first_name'] = user.first_name
-        current_user['last_name'] = user.last_name
-        current_user['email'] = user.email
-        current_user['verified_account'] = user.verified_account
-        response['data'].append(current_user)
+        '''Here, we pass the raw user object to extract only what we need
+            to _extract_required_vars to filter it'''
+        response['data'].append(_extract_required_fields(user))
 
     return response
+
+
+################################################
+# Get a specific the user from the database    #
+################################################
+@app.route('/user/<user_slug>', methods=['GET'])
+def get_user_by_username(user_slug):
+    # TODO: Authentication for calling this API endpoint. Admin only.
+    """
+    This function iterates the database to find all users and returns as JSON
+    :return: Response Code
+    """
+    check_username = str(user_slug).strip()
+    get_user = User.query.filter_by(username=check_username).first()
+
+    if get_user:
+        requested_user = _extract_required_fields(get_user)
+        return make_response(jsonify(status=200, data=requested_user), 200)
+    else:
+        return make_response(jsonify(status=404, msg="No such user found in database"), 404)
 
 
 # Register a user
