@@ -87,8 +87,8 @@ def add_new_user():
             abort(500)
         user = User(**newuser)
         user.save()
-    return make_response(jsonify(status=201, msg="User {} successfully added" +
-                                 "to database".format(user.username)), 201)
+    return make_response(jsonify(status=201, msg="User {} successfully added".format(user.username) +
+                                 "to database"), 201)
 
 
 #################################################
@@ -145,6 +145,7 @@ def handle_sql_assertion_error(err):
             errmsg = err.orig.args[0].split('\n')
     except IndexError:
         errmsg = err.orig.args[0]
+        
     return make_response(jsonify(status=400, msg=errmsg), 400)
 
 
